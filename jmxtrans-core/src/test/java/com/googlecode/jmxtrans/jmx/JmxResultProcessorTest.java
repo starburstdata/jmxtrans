@@ -28,6 +28,7 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.googlecode.jmxtrans.model.JmxResultProcessor;
+import com.googlecode.jmxtrans.model.Query;
 import com.googlecode.jmxtrans.model.Result;
 import org.junit.Test;
 
@@ -237,13 +238,17 @@ public class JmxResultProcessorTest {
 		AttributeList attr = ManagementFactory.getPlatformMBeanServer().getAttributes(
 				memory.getObjectName(), new String[]{"HeapMemoryUsage"});
 		List<Result> results = new JmxResultProcessor(
-				dummyQueryWithResultAlias(),
+				Query.builder()
+						.setObj("myQuery:key=val")
+						.setResultAlias("resultAlias")
+						.addKey("init")
+						.build(),
 				memory,
 				attr.asList(),
 				memory.getClassName(),
 				TEST_DOMAIN_NAME).getResults();
 
-		assertThat(results).hasSize(4);
+		assertThat(results).hasSize(1);
 
 		for(Result result: results) {
 			assertThat(result.getAttributeName()).isEqualTo("HeapMemoryUsage");
