@@ -23,4 +23,5 @@
 #
 
 set -xeuo pipefail
+sudo yum install -y rpm
 ./mvnw clean deploy -P rpm -DskipTests -Dcobertura.skip=true -Dspotbugs.skip=true -B -T C1
