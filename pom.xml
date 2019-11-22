@@ -115,20 +115,14 @@
 		<url>https://github.com/jmxtrans/jmxtrans</url>
 	</scm>
 
-	<distributionManagement>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<site>
-			<id>github</id>
-			<url>scm:git:git@github.com:jmxtrans/jmxtrans.git</url>
-		</site>
-	</distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Starburst internal repository</name>
+            <url>http://nexus.aws.starburstdata.com:8081/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
+
 	<properties>
 		<animal-sniffer.version>1.16</animal-sniffer.version>
 		<aws.java.sdk.version>1.11.228</aws.java.sdk.version>
